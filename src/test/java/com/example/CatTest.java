@@ -36,7 +36,7 @@ class CatTest {
     }
 
     @Test
-    void getFoodReturnsCorrectFood() throws Exception {
+    void getFoodCallsFelineEatMeat() throws Exception {
         cat.getFood();
         assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
