@@ -27,9 +27,11 @@ class LionTest {
 
     @Test
     void getKittensDelegatesToFeline() throws Exception {
-        when(feline.getKittens()).thenReturn(3);
+        when(feline.getKittens()).thenReturn(1);
+
         Lion lion = new Lion("Самец", feline);
-        assertEquals(3, lion.getKittens());
+
+        assertEquals(1, lion.getKittens());
         verify(feline).getKittens();
     }
 
