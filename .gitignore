@@ -2,8 +2,20 @@
 
 # Maven build output; отчёт JaCoCo (target/site/jacoco) можно коммитить по заданию
 .idea/
-target/
 *.iml
+
+# игнорируем всё в target
+target/*
+
+# но разрешаем папку site
+!target/site/
+
+# внутри site снова игнорируем всё
+target/site/*
+
+# но разрешаем jacoco
+!target/site/jacoco/
+!target/site/jacoco/**
 
 # Compiled class file
 *.class
