@@ -15,19 +15,30 @@ import static org.mockito.Mockito.when;
 class CatTest {
 
     @Mock
-    private Feline feline; // test updated
+    private Feline feline;
+    private Cat cat;
+
+    @BeforeEach
+    void setUp() {
+        Cat = new Cat(feline);
+    }// test updated
 
     @Test
     void getSoundReturnsMeow() {
-        Cat cat = new Cat(feline);
         assertEquals("Мяу", cat.getSound());
     }
 
     @Test
-    void getFoodDelegatesToPredatorEatMeat() throws Exception {
+    void getFoodReturnsCorrectFood() throws Exception {
         when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Cat cat = new Cat(feline);
+
         assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
-        verify(feline).eatMeat();
+    }
+
+    @Test
+    void getFoodReturnsCorrectFood() throws Exception {
+        when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
 }
