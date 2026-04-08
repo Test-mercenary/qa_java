@@ -38,6 +38,6 @@ class CatTest {
     @Test
     void getFoodCallsFelineEatMeat() throws Exception {
         cat.getFood();
-        assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
+        verify(feline).eatMeat();
     }
 }
