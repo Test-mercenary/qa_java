@@ -22,7 +22,7 @@ class AlexTest {
     private Alex alex;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         alex = new Alex(feline);
     }
 
@@ -56,6 +56,10 @@ class AlexTest {
 
     @Test
     void getFoodReturnsCorrectFood() throws Exception {
+        List<String> food = List.of("Животные", "Птицы", "Рыба");
+
+        when(feline.getFood("Хищник")).thenReturn(food);
+
         assertEquals(food, alex.getFood());
     }
 
