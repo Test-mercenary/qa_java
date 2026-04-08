@@ -19,28 +19,47 @@ class LionTest {
     @Mock
     private Feline feline;
 
-    @Test
-    void constructorThrowsWhenSexIsInvalid() {
-        Exception ex = assertThrows(Exception.class, () -> new Lion("Неизвестно", feline));
-        assertTrue(ex.getMessage().contains("допустимые значения пола"));
+    private Lion maleLion;
+    private Lion femaleLion;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        maleLion = new Lion("Самец", feline);
+        femaleLion = new Lion("Самка", feline);
     }
 
     @Test
-    void getKittensDelegatesToFeline() throws Exception {
+    void constructorThrowsWhenSexIsInvalid() {
+        Exception ex = assertThrows(Exception.class, () -> new Lion("Неизвестно", feline));
+        assertTrue(ex.getMessage().contains("Допустимые значения пола"));
+    }
+
+    @Test
+    void getKittensReturnsOne() throws Exception {
         when(feline.getKittens()).thenReturn(1);
 
-        Lion lion = new Lion("Самец", feline);
+        assertEquals(1, maleLion.getKittens());
+    }
 
-        assertEquals(1, lion.getKittens());
+    @Test
+    void getKittensCallsFeline() throws Exception {
+        maleLion.getKittens();
+
         verify(feline).getKittens();
     }
 
     @Test
-    void getFoodDelegatesToFeline() throws Exception {
+    void getFoodReturnsCorrectFood() throws Exception {
         List<String> food = List.of("Животные", "Птицы", "Рыба");
         when(feline.getFood("Хищник")).thenReturn(food);
-        Lion lion = new Lion("Самка", feline);
-        assertEquals(food, lion.getFood());
+
+        assertEquals(food, femaleLion.getFood());
+    }
+
+    @Test
+    void getFoodCallsFeline() throws Exception {
+        femaleLion.getFood();
+
         verify(feline).getFood("Хищник");
     }
 }

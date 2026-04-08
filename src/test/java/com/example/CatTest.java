@@ -20,7 +20,7 @@ class CatTest {
 
     @BeforeEach
     void setUp() {
-        Cat = new Cat(feline);
+        cat = new Cat(feline);
     }// test updated
 
     @Test
@@ -31,14 +31,12 @@ class CatTest {
     @Test
     void getFoodReturnsCorrectFood() throws Exception {
         when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-
         assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
 
     @Test
     void getFoodReturnsCorrectFood() throws Exception {
-        when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-
+        cat.getFood();
         assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
 }
