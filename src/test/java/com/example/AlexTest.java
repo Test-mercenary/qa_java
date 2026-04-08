@@ -31,8 +31,13 @@ class AlexTest {
     }
 
     @Test
-    void getKittensAlwaysZero() throws Exception {
+    void getKittensReturnsZero() throws Exception {
         assertEquals(0, alex.getKittens());
+    }
+
+    @Test
+    void getKittensDoesNotCallFeline() throws Exception {
+        alex.getKittens();
         verify(feline, never()).getKittens();
     }
 
@@ -49,10 +54,13 @@ class AlexTest {
     }
 
     @Test
-    void getFoodStillUsesFeline() throws Exception {
-        List<String> food = List.of("Животные", "Птицы", "Рыба");
-        when(feline.getFood("Хищник")).thenReturn(food);
+    void getFoodReturnsCorrectFood() throws Exception {
         assertEquals(food, alex.getFood());
+    }
+
+    @Test
+    void getFoodCallsFeline() throws Exception {
+        alex.getFood();
         verify(feline).getFood("Хищник");
     }
 }
