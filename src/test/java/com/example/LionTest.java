@@ -32,7 +32,10 @@ class LionTest {
     @Test
     void constructorThrowsWhenSexIsInvalid() {
         Exception ex = assertThrows(Exception.class, () -> new Lion("Неизвестно", feline));
-        assertTrue(ex.getMessage().contains("Допустимые значения пола"));
+        assertEquals(
+                "Используйте допустимые значения пола животного - самей или самка",
+                ex.getMessage()
+        );
     }
 
     @Test
